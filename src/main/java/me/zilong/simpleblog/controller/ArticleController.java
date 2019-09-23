@@ -21,7 +21,7 @@ public class ArticleController {
     }
 
     @PostMapping
-    public String postArticle(Article article) {
+    public String postArticle(@RequestBody Article article) {
         articleSrv.addNewArticle(article);
         return "success";
     }
@@ -32,7 +32,7 @@ public class ArticleController {
     }
 
     @PutMapping(value="/{id}")
-    public String putArticle(@PathVariable Long id, Article article) {
+    public String putArticle(@PathVariable Long id, @RequestBody Article article) {
         Article a = articleSrv.getArticleById(id);
         a.setTitle(article.getTitle());
         a.setMdContent(article.getMdContent());
