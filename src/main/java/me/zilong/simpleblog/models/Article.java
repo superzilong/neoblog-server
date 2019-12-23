@@ -1,4 +1,4 @@
-package me.zilong.simpleblog.data;
+package me.zilong.simpleblog.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -1,6 +1,6 @@
 package me.zilong.simpleblog.controller;
 
-import me.zilong.simpleblog.data.Article;
+import me.zilong.simpleblog.models.Article;
 import me.zilong.simpleblog.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
