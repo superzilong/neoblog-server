@@ -42,4 +42,9 @@ public class ArticleService {
         articleRepo.deleteById(id);
         return "success";
     }
+
+    public List<Object> getAllArticleIdAndTitles()
+    {
+        return articleRepo.findAllIdAndTitle();
+    }
 }

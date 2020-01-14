@@ -1,9 +1,6 @@
 package me.zilong.simpleblog.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Article {
@@ -11,9 +8,21 @@ public class Article {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     private String title;
+    @Lob
     private String mdContent;
+    @Lob
     private String htmlContent;
     private String summary;
+
+    public String getPublishDate() {
+        return publishDate;
+    }
+
+    public void setPublishDate(String datetime) {
+        this.publishDate = datetime;
+    }
+
+    private String publishDate;
 
     protected Article() {}
 
@@ -24,8 +33,8 @@ public class Article {
     @Override
     public String toString() {
         return String.format(
-                "Article[id=%d, title='%s']",
-                getId(), getTitle());
+                "Article[id=%d, title='%s',datetime='%s']",
+                getId(), getTitle(), getPublishDate());
     }
 
     public Long getId() {
