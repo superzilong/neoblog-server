@@ -4,11 +4,14 @@ import javax.validation.constraints.NotBlank;
 
 public class LoginRequest {
 
-    @NotBlank
+    // @NotBlank
     private String username;
 
     @NotBlank
     private String password;
+
+    @NotBlank
+    private String email;
 
     public String getEmail() {
         return email;
@@ -17,9 +20,6 @@ public class LoginRequest {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    @NotBlank
-    private String email;
 
     public String getUsername() {
         return username;

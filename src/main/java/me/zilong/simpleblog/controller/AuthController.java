@@ -1,6 +1,5 @@
 package me.zilong.simpleblog.controller;
 
-import io.jsonwebtoken.Jwt;
 import me.zilong.simpleblog.models.ERole;
 import me.zilong.simpleblog.models.Role;
 import me.zilong.simpleblog.models.User;
@@ -12,7 +11,6 @@ import me.zilong.simpleblog.repository.RoleRepository;
 import me.zilong.simpleblog.repository.UserRepository;
 import me.zilong.simpleblog.security.jwt.JwtUtils;
 import me.zilong.simpleblog.security.service.UserDetailsImpl;
-import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -28,8 +26,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-
-import static org.springframework.http.ResponseEntity.ok;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -54,7 +50,7 @@ public class AuthController {
     @PostMapping("/signin")
     public ResponseEntity<JwtResponse> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+                new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
 
@@ -83,6 +79,7 @@ public class AuthController {
         if (strRoles == null) {
             Role userRole = roleRepository.findByName(ERole.ROLE_USER)
                     .orElseThrow(()->new RuntimeException("Error: Role is not found."));
+            roles.add(userRole);
         } else {
             strRoles.forEach(role->{
                 switch (role) {

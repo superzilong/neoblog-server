@@ -2,7 +2,6 @@ package me.zilong.simpleblog.security.service;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import me.zilong.simpleblog.models.User;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
